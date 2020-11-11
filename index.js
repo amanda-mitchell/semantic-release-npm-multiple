@@ -1,9 +1,9 @@
 const npmPlugin = require('@semantic-release/npm');
 
 function wrapCallback(callback) {
-  return (pluginConfig, context) => {
-    for (const [prefix, childConfig] of Object.entries(pluginConfig)) {
-      const fullPrefix = `${prefix.toUpperCase}_`;
+  return async ({ registries, ...pluginConfig }, context) => {
+    for (const [prefix, childConfig] of Object.entries(registries || {})) {
+      const fullPrefix = `${prefix.toUpperCase()}_`;
       const { env } = context;
       const childEnv = { ...env };
 
@@ -20,7 +20,10 @@ function wrapCallback(callback) {
         }
       }
 
-      return callback(childConfig, { ...context, env: childEnv });
+      await callback(
+        { ...childConfig, ...pluginConfig },
+        { ...context, env: childEnv }
+      );
     }
   };
 }

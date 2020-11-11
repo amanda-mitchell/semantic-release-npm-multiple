@@ -20,11 +20,13 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
     [
       "@semantic-release/npm",
       {
-        "first": {
-          "npmPublish": true
-        },
-        "second": {
-          "npmPublish": true
+        "registries": {
+          "registryName1": {
+            "npmPublish": true
+          },
+          "registryName2": {
+            "npmPublish": true
+          }
         }
       }
     ]
@@ -34,7 +36,7 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
 
 ## Configuration
 
-Each of the top-level keys refers to a specific registry that should be used and may be any value that is meaningful to you.
+Each of the keys in `registries` refers to a specific registry that should be used and may be any value that is meaningful to you.
 The object associated with that key is a set of options that should be passed to the `@semantic-release/npm` plugin when calling it.
 
 `@semantic-release/npm` also looks at a number of environment variables for its configuration:
@@ -45,19 +47,22 @@ The object associated with that key is a set of options that should be passed to
 - `NPM_EMAIL`
 - `NPM_CONFIG_REGISTRY`
 
-For any of these variables, if you define a `{TOP_LEVEL_KEY}_{VARIABLE}` environment variable, it will be used instead.
+For any of these variables, if you define a `{UPPER_CASE_REGISTRY_NAME}_{VARIABLE}` environment variable, it will be used instead.
 
 For example, if you wanted to publish a package to both a GitHub private registry and the public NPM registry, you would first create a configuration file like this:
 
-```
+```json
+{
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     [
       "@semantic-release/npm",
       {
-        "github": {},
-        "public": {}
+        "registries": {
+          "github": {},
+          "public": {}
+        }
       }
     ]
   ]
