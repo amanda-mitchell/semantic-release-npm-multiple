@@ -20,7 +20,7 @@ function wrapCallback(callback) {
         }
       }
 
-      callback(childConfig, { ...context, childEnv });
+      return callback(childConfig, { ...context, childEnv });
     }
   };
 }
