@@ -1,0 +1,23 @@
+{
+  "name": "@amanda-mitchell/semantic-release-npm-multiple",
+  "version": "1.0.0",
+  "description": "A semantic release plugin to publish an NPM package to multiple registries.",
+  "main": "index.js",
+  "repository": "https://github.com/amanda-mitchell/semantic-release-npm-multiple",
+  "author": "Amanda Mitchell <she@mandymitchell.me>",
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "devDependencies": {
+    "@commitlint/config-conventional": "^11.0.0",
+    "commitlint": "^11.0.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.5.1",
+    "prettier": "^2.1.2",
+    "semantic-release": "^17.2.2"
+  },
+  "dependencies": {
+    "@semantic-release/npm": "^7.0.6"
+  }
+}
