@@ -12,6 +12,13 @@
   "publishConfig": {
     "access": "public"
   },
+  "keywords": [
+    "npm",
+    "publish",
+    "registry",
+    "semantic-release",
+    "version"
+  ],
   "devDependencies": {
     "@commitlint/config-conventional": "^11.0.0",
     "commitlint": "^11.0.0",

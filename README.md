@@ -1,7 +1,6 @@
 # @amanda-mitchell/semantic-release-npm-multiple
 
-This library is a [Semantic Release](https://semantic-release.gitbook.io/semantic-release/) plugin that supports publishing an NPM package to multiple registries.
-It supports all of the same configuration options as `@semantic-release/npm`, which it uses under the hood.
+This is a thin wrapper around the [@semantic-release/npm](https://github.com/semantic-release/npm) plugin for [Semantic Release](https://semantic-release.gitbook.io/semantic-release/) that allows it to be called multiple times, which can be useful if you need to publish to multiple NPM registries simultaneously.
 
 ## Installation
 
