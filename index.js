@@ -5,7 +5,7 @@ function wrapCallback(callback) {
     for (const [prefix, childConfig] of Object.entries(pluginConfig)) {
       const fullPrefix = `${prefix.toUpperCase}_`;
       const { env } = context;
-      const chilldEnv = { ...env };
+      const childEnv = { ...env };
 
       for (const variableName of [
         'NPM_TOKEN',
