@@ -9,6 +9,9 @@
   "files": [
     "index.js"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@commitlint/config-conventional": "^11.0.0",
     "commitlint": "^11.0.0",
