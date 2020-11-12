@@ -28,6 +28,7 @@
     "semantic-release": "^17.2.2"
   },
   "dependencies": {
-    "@semantic-release/npm": "^7.0.6"
+    "@semantic-release/npm": "^7.0.6",
+    "require-reload": "^0.2.2"
   }
 }

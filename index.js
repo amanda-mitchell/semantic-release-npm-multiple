@@ -1,9 +1,35 @@
-const npmPlugin = require('@semantic-release/npm');
+const requireReload = require('require-reload');
 
-function wrapCallback(callback) {
+const reload = requireReload(require);
+
+// The @semantic-release/npm plugin maintains
+// some state at the module level to decide where to
+// store its .npmrc file.
+// Because of this, we have to monkey around a bit with
+// Node's require cache in order to create multiple copies
+// of the module in order to use it with different configurations.
+const registryPlugins = {};
+function getChildPlugin(registryName) {
+  let plugin = registryPlugins[registryName];
+  if (!plugin) {
+    plugin = reload('@semantic-release/npm');
+    registryPlugins[registryName] = plugin;
+  }
+
+  return plugin;
+}
+
+function createCallbackWrapper(callbackName) {
   return async ({ registries, ...pluginConfig }, context) => {
-    for (const [prefix, childConfig] of Object.entries(registries || {})) {
-      const fullPrefix = `${prefix.toUpperCase()}_`;
+    for (const [registryName, childConfig] of Object.entries(
+      registries || {}
+    )) {
+      const callback = getChildPlugin(registryName)[callbackName];
+      if (!callback) {
+        return;
+      }
+
+      const environmentVariablePrefix = `${prefix.toUpperCase()}_`;
       const { env } = context;
       const childEnv = { ...env };
 
@@ -14,7 +40,7 @@ function wrapCallback(callback) {
         'NPM_EMAIL',
         'NPM_CONFIG_REGISTRY',
       ]) {
-        const overridenValue = env[fullPrefix + variableName];
+        const overridenValue = env[environmentVariablePrefix + variableName];
         if (overridenValue) {
           childEnv[variableName] = overridenValue;
         }
@@ -28,9 +54,9 @@ function wrapCallback(callback) {
   };
 }
 
+const callbackNames = ['verify', 'prepare', 'publish', 'success', 'fail'];
+
 module.exports = Object.assign(
   {},
-  ...Object.entries(npmPlugin).map(([callbackName, callback]) => ({
-    [callbackName]: wrapCallback(callback),
-  }))
+  ...callbackNames.map(name => ({ [name]: createCallbackWrapper(name) }))
 );
