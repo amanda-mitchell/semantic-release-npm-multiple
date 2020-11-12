@@ -42,7 +42,6 @@ function createCallbackWrapper(callbackName) {
       ]) {
         const overridenValue = env[environmentVariablePrefix + variableName];
         if (overridenValue) {
-          console.log('overriding', variableName);
           childEnv[variableName] = overridenValue;
         }
       }

@@ -3,7 +3,7 @@ module.exports = {
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
-    [require('./index'), { registries: { public: {}, github: {} } }],
+    [require('./index'), { registries: { github: {}, public: {} } }],
     '@semantic-release/github',
   ],
 };
