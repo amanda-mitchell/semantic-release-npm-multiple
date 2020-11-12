@@ -19,10 +19,6 @@ function getChildPlugin(registryName) {
   return plugin;
 }
 
-function log({ stdout }, message) {
-  return new Promise(resolve => stdout.write(message + '\n', resolve));
-}
-
 function createCallbackWrapper(callbackName) {
   return async ({ registries, ...pluginConfig }, context) => {
     for (const [registryName, childConfig] of Object.entries(
@@ -33,8 +29,7 @@ function createCallbackWrapper(callbackName) {
         return;
       }
 
-      await log(
-        context,
+      context.logger.log(
         `Performing ${callbackName} for registry ${registryName}`
       );
 
