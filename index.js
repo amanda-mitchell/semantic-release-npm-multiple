@@ -29,7 +29,7 @@ function createCallbackWrapper(callbackName) {
         return;
       }
 
-      const environmentVariablePrefix = `${prefix.toUpperCase()}_`;
+      const environmentVariablePrefix = `${registryName.toUpperCase()}_`;
       const { env } = context;
       const childEnv = { ...env };
 
