@@ -1,0 +1,18 @@
+name: Build PR
+on: pull_request
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install dependencies
+        run: yarn --frozen-lockfile --ignore-scripts
+      - name: Lint
+        env:
+        run: yarn prettier --check "./**/*.{js,json,md}"
