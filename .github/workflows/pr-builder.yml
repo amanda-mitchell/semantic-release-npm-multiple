@@ -14,7 +14,6 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile --ignore-scripts
       - name: Lint
-        env:
         run: yarn prettier --check "./**/*.{js,md}"
       - name: Merge
         if: ${{ github.event.pull_request.user.login == 'dependabot-preview[bot]' }}
