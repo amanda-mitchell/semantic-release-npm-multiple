@@ -18,7 +18,7 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     [
-      "@semantic-release/npm",
+      "@amanda-mitchell/semantic-release-npm-multiple",
       {
         "registries": {
           "registryName1": {
@@ -39,7 +39,7 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
 Each of the keys in `registries` refers to a specific registry that should be used and may be any value that is meaningful to you.
 The object associated with that key is a set of options that should be passed to the `@semantic-release/npm` plugin when calling it.
 
-`@semantic-release/npm` also looks at a number of environment variables for its configuration:
+`@amanda-mitchell/semantic-release-npm-multiple` also looks at a number of environment variables for its configuration:
 
 - `NPM_TOKEN`
 - `NPM_USERNAME`
@@ -57,7 +57,7 @@ For example, if you wanted to publish a package to both a GitHub private registr
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     [
-      "@semantic-release/npm",
+      "@amanda-mitchell/semantic-release-npm-multiple",
       {
         "registries": {
           "github": {},
