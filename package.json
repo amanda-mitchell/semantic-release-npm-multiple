@@ -20,7 +20,7 @@
     "version"
   ],
   "devDependencies": {
-    "@commitlint/config-conventional": "^11.0.0",
+    "@commitlint/config-conventional": "^12.0.0",
     "commitlint": "^11.0.0",
     "husky": "^5.0.9",
     "lint-staged": "^10.5.1",
