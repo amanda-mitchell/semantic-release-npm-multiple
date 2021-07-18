@@ -3,20 +3,22 @@ registries:
   npm-registry-npm-pkg-github-com:
     type: npm-registry
     url: https://npm.pkg.github.com
-    token: "${{secrets.PRIVATE_PACKAGE_TOKEN}}"
+    token: '${{secrets.PRIVATE_PACKAGE_TOKEN}}'
 
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: daily
-    time: "13:00"
-  pull-request-branch-name:
-    separator: "-"
-  open-pull-requests-limit: 10
-  commit-message:
-    prefix: feat
-    prefix-development: chore
-    include: scope
-  registries:
-  - npm-registry-npm-pkg-github-com
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: daily
+      time: '13:00'
+    ignore:
+      - dependency-name: husky
+    pull-request-branch-name:
+      separator: '-'
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: feat
+      prefix-development: chore
+      include: scope
+    registries:
+      - npm-registry-npm-pkg-github-com
