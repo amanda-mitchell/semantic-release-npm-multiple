@@ -30,5 +30,8 @@
   "dependencies": {
     "@semantic-release/npm": "^9.0.0",
     "require-reload": "^0.2.2"
+  },
+  "peerDependencies": {
+    "semantic-release": "^19.x"
   }
 }
