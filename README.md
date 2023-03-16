@@ -46,6 +46,7 @@ The object associated with that key is a set of options that should be passed to
 - `NPM_PASSWORD`
 - `NPM_EMAIL`
 - `NPM_CONFIG_REGISTRY`
+- `NPM_CONFIG_USERCONFIG`
 
 For any of these variables, if you define a `{UPPER_CASE_REGISTRY_NAME}_{VARIABLE}` environment variable, it will be used instead.
 

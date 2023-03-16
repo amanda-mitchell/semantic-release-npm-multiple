@@ -43,6 +43,7 @@ function createCallbackWrapper(callbackName) {
         'NPM_PASSWORD',
         'NPM_EMAIL',
         'NPM_CONFIG_REGISTRY',
+        'NPM_CONFIG_USERCONFIG',
       ]) {
         const overridenValue = env[environmentVariablePrefix + variableName];
         if (overridenValue) {
