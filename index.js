@@ -22,7 +22,7 @@ function getChildPlugin(registryName) {
 function createCallbackWrapper(callbackName) {
   return async ({ registries, ...pluginConfig }, context) => {
     for (const [registryName, childConfig] of Object.entries(
-      registries || {}
+      registries || {},
     )) {
       const callback = getChildPlugin(registryName)[callbackName];
       if (!callback) {
@@ -30,7 +30,7 @@ function createCallbackWrapper(callbackName) {
       }
 
       context.logger.log(
-        `Performing ${callbackName} for registry ${registryName}`
+        `Performing ${callbackName} for registry ${registryName}`,
       );
 
       const environmentVariablePrefix = `${registryName.toUpperCase()}_`;
@@ -53,7 +53,7 @@ function createCallbackWrapper(callbackName) {
 
       await callback(
         { ...childConfig, ...pluginConfig },
-        { ...context, env: childEnv }
+        { ...context, env: childEnv },
       );
     }
   };
@@ -63,5 +63,5 @@ const callbackNames = ['verify', 'prepare', 'publish', 'success', 'fail'];
 
 module.exports = Object.assign(
   {},
-  ...callbackNames.map(name => ({ [name]: createCallbackWrapper(name) }))
+  ...callbackNames.map(name => ({ [name]: createCallbackWrapper(name) })),
 );
