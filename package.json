@@ -28,7 +28,7 @@
     "semantic-release": "^21.1.1"
   },
   "dependencies": {
-    "@semantic-release/npm": "^9.0.0",
+    "@semantic-release/npm": "^10.0.5",
     "require-reload": "^0.2.2"
   },
   "peerDependencies": {
