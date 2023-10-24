@@ -1,7 +1,3 @@
-const requireReload = require('require-reload');
-
-const reload = requireReload(require);
-
 // The @semantic-release/npm plugin maintains
 // some state at the module level to decide where to
 // store its .npmrc file.
@@ -9,10 +5,10 @@ const reload = requireReload(require);
 // Node's require cache in order to create multiple copies
 // of the module in order to use it with different configurations.
 const registryPlugins = {};
-function getChildPlugin(registryName) {
+async function getChildPlugin(registryName) {
   let plugin = registryPlugins[registryName];
   if (!plugin) {
-    plugin = reload('@semantic-release/npm');
+    plugin = await import('@semantic-release/npm');
     registryPlugins[registryName] = plugin;
   }
 
@@ -24,7 +20,7 @@ function createCallbackWrapper(callbackName) {
     for (const [registryName, childConfig] of Object.entries(
       registries || {},
     )) {
-      const callback = getChildPlugin(registryName)[callbackName];
+      const callback = (await getChildPlugin(registryName))[callbackName];
       if (!callback) {
         return;
       }
@@ -61,7 +57,7 @@ function createCallbackWrapper(callbackName) {
 
 const callbackNames = ['verify', 'prepare', 'publish', 'success', 'fail'];
 
-module.exports = Object.assign(
+export default Object.assign(
   {},
   ...callbackNames.map(name => ({ [name]: createCallbackWrapper(name) })),
 );

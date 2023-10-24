@@ -9,6 +9,7 @@
   "files": [
     "index.js"
   ],
+  "type": "module",
   "publishConfig": {
     "access": "public"
   },
@@ -28,10 +29,9 @@
     "semantic-release": "^22.0.0"
   },
   "dependencies": {
-    "@semantic-release/npm": "^11.0.0",
-    "require-reload": "^0.2.2"
+    "@semantic-release/npm": "^11.0.0"
   },
   "peerDependencies": {
-    "semantic-release": "^19.x"
+    "semantic-release": ">= 19"
   }
 }
