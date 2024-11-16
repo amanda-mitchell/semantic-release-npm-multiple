@@ -3,14 +3,14 @@ const { verify, prepare, publish, success, fail } = require('./index');
 const pluginConfig = { registries: { github: {}, public: {} } };
 
 describe('verify', () => {
-  it('does not crash', () => {
-    verify(pluginConfig, {});
+  it('does not crash', async () => {
+    await verify(pluginConfig, {});
   });
 });
 
 describe('prepare', () => {
-  it('does not crash', () => {
-    prepare(pluginConfig, {});
+  it('does not crash', async () => {
+    await prepare(pluginConfig, {});
   });
 });
 
@@ -18,19 +18,19 @@ describe('prepare', () => {
 // setting up sufficient scaffolding to actually
 // try publishing a package.
 describe.skip('publish', () => {
-  it('does not crash', () => {
-    publish(pluginConfig, {});
+  it('does not crash', async () => {
+    await publish(pluginConfig, {});
   });
 });
 
 describe('success', () => {
-  it('does not crash', () => {
-    success(pluginConfig, {});
+  it('does not crash', async () => {
+    await success(pluginConfig, {});
   });
 });
 
 describe('fail', () => {
-  it('does not crash', () => {
-    fail(pluginConfig, {});
+  it('does not crash', async () => {
+    await fail(pluginConfig, {});
   });
 });
