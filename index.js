@@ -43,7 +43,6 @@ function createCallbackWrapper(callbackName) {
       registries || {},
     )) {
       const plugin = await getChildPlugin(registryName);
-      console.log({ plugin });
 
       const callback = plugin[callbackName];
       if (!callback) {
