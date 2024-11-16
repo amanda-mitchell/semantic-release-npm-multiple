@@ -16,6 +16,10 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: yarn --frozen-lockfile --ignore-scripts
+      - name: Lint
+        run: yarn prettier --check "./**/*.{js,md}"
+      - name: Jest
+        run: NODE_OPTIONS=--experimental-vm-modules yarn jest
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

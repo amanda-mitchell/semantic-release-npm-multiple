@@ -15,3 +15,5 @@ jobs:
         run: yarn --frozen-lockfile --ignore-scripts
       - name: Lint
         run: yarn prettier --check "./**/*.{js,md}"
+      - name: Jest
+        run: NODE_OPTIONS=--experimental-vm-modules yarn jest
