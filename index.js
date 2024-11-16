@@ -1,7 +1,3 @@
-const requireReload = require('require-reload');
-
-const reload = requireReload(require);
-
 // The @semantic-release/npm plugin maintains
 // some state at the module level to decide where to
 // store its .npmrc file.
@@ -12,7 +8,9 @@ const registryPlugins = {};
 function getChildPlugin(registryName) {
   let plugin = registryPlugins[registryName];
   if (!plugin) {
-    plugin = reload('@semantic-release/npm');
+    plugin = import(
+      `@semantic-release/npm?registry=${encodeURIComponent(registryName)}`
+    );
     registryPlugins[registryName] = plugin;
   }
 
