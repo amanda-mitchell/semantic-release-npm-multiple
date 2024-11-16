@@ -1,36 +1,57 @@
-const { verify, prepare, publish, success, fail } = require('./index');
+import { mkdtemp, rmdir } from 'fs/promises';
+import { addChannel, prepare, publish, verifyConditions } from './index.js';
+import * as underlyingPlugin from '@semantic-release/npm';
 
-const pluginConfig = { registries: { github: {}, public: {} } };
+let workingDirectory;
 
-describe('verify', () => {
+beforeAll(async () => {
+  workingDirectory = await mkdtemp('.');
+});
+
+afterAll(async () => {
+  await rmdir(workingDirectory, { recursive: true });
+});
+
+const createPluginConfig = () => ({
+  registries: { github: {}, public: {} },
+  npmPublish: false,
+});
+
+const createContext = () => ({
+  logger: console,
+  env: {},
+  nextRelease: { version: '1.0' },
+  cwd: workingDirectory,
+});
+
+describe('addChannel', () => {
   it('does not crash', async () => {
-    await verify(pluginConfig, {});
+    await addChannel(createPluginConfig, createContext);
+  });
+});
+
+describe('underlying plugin endpoints', () => {
+  it('has the expected set of keys', () => {
+    expect(new Set(Object.keys(underlyingPlugin))).toEqual(
+      new Set(['addChannel', 'prepare', 'publish', 'verifyConditions']),
+    );
   });
 });
 
 describe('prepare', () => {
   it('does not crash', async () => {
-    await prepare(pluginConfig, {});
+    await prepare(createPluginConfig, createContext);
   });
 });
 
-// We skip this one because it's not worth
-// setting up sufficient scaffolding to actually
-// try publishing a package.
-describe.skip('publish', () => {
+describe('publish', () => {
   it('does not crash', async () => {
-    await publish(pluginConfig, {});
+    await publish(createPluginConfig, createContext);
   });
 });
 
-describe('success', () => {
+describe('verifyConditions', () => {
   it('does not crash', async () => {
-    await success(pluginConfig, {});
-  });
-});
-
-describe('fail', () => {
-  it('does not crash', async () => {
-    await fail(pluginConfig, {});
+    await verifyConditions(createPluginConfig, createContext);
   });
 });

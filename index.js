@@ -5,7 +5,7 @@
 // Node's require cache in order to create multiple copies
 // of the module in order to use it with different configurations.
 const registryPlugins = {};
-function getChildPlugin(registryName) {
+async function getChildPlugin(registryName) {
   let plugin = registryPlugins[registryName];
   if (!plugin) {
     plugin = import(
@@ -14,7 +14,7 @@ function getChildPlugin(registryName) {
     registryPlugins[registryName] = plugin;
   }
 
-  return plugin;
+  return await plugin;
 }
 
 function createCallbackWrapper(callbackName) {
@@ -22,7 +22,10 @@ function createCallbackWrapper(callbackName) {
     for (const [registryName, childConfig] of Object.entries(
       registries || {},
     )) {
-      const callback = getChildPlugin(registryName)[callbackName];
+      const plugin = await getChildPlugin(registryName);
+      console.log({ plugin });
+
+      const callback = plugin[callbackName];
       if (!callback) {
         return;
       }
@@ -57,9 +60,7 @@ function createCallbackWrapper(callbackName) {
   };
 }
 
-const callbackNames = ['verify', 'prepare', 'publish', 'success', 'fail'];
-
-module.exports = Object.assign(
-  {},
-  ...callbackNames.map(name => ({ [name]: createCallbackWrapper(name) })),
-);
+export const addChannel = createCallbackWrapper('addChannel');
+export const prepare = createCallbackWrapper('prepare');
+export const publish = createCallbackWrapper('publish');
+export const verifyConditions = createCallbackWrapper('verifyConditions');

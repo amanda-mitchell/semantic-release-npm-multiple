@@ -6,6 +6,7 @@
   "repository": "https://github.com/amanda-mitchell/semantic-release-npm-multiple",
   "author": "Amanda Mitchell <she@mandymitchell.me>",
   "license": "MIT",
+  "type": "module",
   "files": [
     "index.js"
   ],
