@@ -1,16 +1,36 @@
-// The @semantic-release/npm plugin maintains
-// some state at the module level to decide where to
-// store its .npmrc file.
-// Because of this, we have to monkey around a bit with
-// Node's require cache in order to create multiple copies
-// of the module in order to use it with different configurations.
+const underlyingPluginSpecifier = '@semantic-release/npm';
+
+// We use the safe navigation operator because when this module
+// is executed by jest, import.meta.resolve is unavailable.
+const resolvedNpm = import.meta.resolve?.(underlyingPluginSpecifier);
+
 const registryPlugins = {};
 async function getChildPlugin(registryName) {
   let plugin = registryPlugins[registryName];
   if (!plugin) {
-    plugin = import(
-      `@semantic-release/npm?registry=${encodeURIComponent(registryName)}`
-    );
+    // What's going on here?
+    //
+    // @semantic-release/npm maintains some module-level state (specifically,
+    // a temporary file that acts as an npmrc), which means that we can't just
+    // call the same plugin lifecycle methods repeatedly because they would
+    // stomp on the shared state.
+    //
+    // Fortunately, node has a way to deliberately suppress its normal module
+    // caching behavior, which allows us to load multiple copies of a single module:
+    // by appending a query string to the specifier, node will load one copy of the
+    // module per query string.
+    //
+    // But there's a twist: node *doesn't* support this behavior on "bare specifiers",
+    // which is how we usually import other packages. In order to get around this,
+    // we must use import.meta.resolve in order to transform the bare specifier into
+    // a file url specifier.
+    //
+    // But then there's a double twist! Jest doesn't support import.meta.resolve, but
+    // it *does* support query strings on bare specifiers. So in order to be compatible
+    // with both tests and actual usage, we have this unsightly kludge.
+    const importSpecifier = `${resolvedNpm || underlyingPluginSpecifier}?registry=${encodeURIComponent(registryName)}`;
+
+    plugin = import(importSpecifier);
     registryPlugins[registryName] = plugin;
   }
 
