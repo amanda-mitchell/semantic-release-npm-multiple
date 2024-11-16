@@ -1,5 +1,5 @@
 import { mkdtemp, rmdir } from 'fs/promises';
-import { addChannel, prepare, publish, verifyConditions } from './index.js';
+import plugin from './index.js';
 import * as underlyingPlugin from '@semantic-release/npm';
 
 let workingDirectory;
@@ -26,7 +26,7 @@ const createContext = () => ({
 
 describe('addChannel', () => {
   it('does not crash', async () => {
-    await addChannel(createPluginConfig, createContext);
+    await plugin.addChannel(createPluginConfig, createContext);
   });
 });
 
@@ -40,18 +40,18 @@ describe('underlying plugin endpoints', () => {
 
 describe('prepare', () => {
   it('does not crash', async () => {
-    await prepare(createPluginConfig, createContext);
+    await plugin.prepare(createPluginConfig, createContext);
   });
 });
 
 describe('publish', () => {
   it('does not crash', async () => {
-    await publish(createPluginConfig, createContext);
+    await plugin.publish(createPluginConfig, createContext);
   });
 });
 
 describe('verifyConditions', () => {
   it('does not crash', async () => {
-    await verifyConditions(createPluginConfig, createContext);
+    await plugin.verifyConditions(createPluginConfig, createContext);
   });
 });

@@ -60,7 +60,9 @@ function createCallbackWrapper(callbackName) {
   };
 }
 
-export const addChannel = createCallbackWrapper('addChannel');
-export const prepare = createCallbackWrapper('prepare');
-export const publish = createCallbackWrapper('publish');
-export const verifyConditions = createCallbackWrapper('verifyConditions');
+export default {
+  addChannel: createCallbackWrapper('addChannel'),
+  prepare: createCallbackWrapper('prepare'),
+  publish: createCallbackWrapper('publish'),
+  verifyConditions: createCallbackWrapper('verifyConditions'),
+};
