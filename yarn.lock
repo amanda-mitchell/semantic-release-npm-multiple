@@ -474,12 +474,12 @@
     yargs "^17.0.0"
 
 "@commitlint/config-conventional@^20.0.0":
-  version "20.0.0"
-  resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-20.0.0.tgz#f222dc9ce08e16f9c66eae55e99129d2be517546"
-  integrity sha512-q7JroPIkDBtyOkVe9Bca0p7kAUYxZMxkrBArCfuD3yN4KjRAenP9PmYwnn7rsw8Q+hHq1QB2BRmBh0/Z19ZoJw==
+  version "20.4.1"
+  resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-20.4.1.tgz#eee4a14f724147a714b6d76f069e4fefba95fad2"
+  integrity sha512-0YUvIeBtpi86XriqrR+TCULVFiyYTIOEPjK7tTRMxjcBm1qlzb+kz7IF2WxL6Fq5DaundG8VO37BNgMkMTBwqA==
   dependencies:
-    "@commitlint/types" "^20.0.0"
-    conventional-changelog-conventionalcommits "^7.0.2"
+    "@commitlint/types" "^20.4.0"
+    conventional-changelog-conventionalcommits "^9.1.0"
 
 "@commitlint/config-validator@^20.0.0":
   version "20.0.0"
@@ -607,13 +607,13 @@
   dependencies:
     find-up "^7.0.0"
 
-"@commitlint/types@^20.0.0":
-  version "20.0.0"
-  resolved "https://registry.yarnpkg.com/@commitlint/types/-/types-20.0.0.tgz#70edef6e1c1d3aaca15e1e87242d8d256beebe67"
-  integrity sha512-bVUNBqG6aznYcYjTjnc3+Cat/iBgbgpflxbIBTnsHTX0YVpnmINPEkSRWymT2Q8aSH3Y7aKnEbunilkYe8TybA==
+"@commitlint/types@^20.0.0", "@commitlint/types@^20.4.0":
+  version "20.4.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/types/-/types-20.4.0.tgz#f8a1cf83b17db4f7de56940880873bca7480be59"
+  integrity sha512-aO5l99BQJ0X34ft8b0h7QFkQlqxC6e7ZPVmBKz13xM9O8obDaM1Cld4sQlJDXXU/VFuUzQ30mVtHjVz74TuStw==
   dependencies:
-    "@types/conventional-commits-parser" "^5.0.0"
-    chalk "^5.3.0"
+    conventional-commits-parser "^6.2.1"
+    picocolors "^1.1.1"
 
 "@emnapi/core@^1.4.3":
   version "1.4.3"
@@ -1685,13 +1685,6 @@
   dependencies:
     "@babel/types" "^7.20.7"
 
-"@types/conventional-commits-parser@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@types/conventional-commits-parser/-/conventional-commits-parser-5.0.0.tgz#8c9d23e0b415b24b91626d07017303755d542dc8"
-  integrity sha512-loB369iXNmAZglwWATL+WRe+CRMmmBPtpolYzIebFaX4YA3x+BEfLqhUAV9WanycKI3TG1IMr5bMJDajDKLlUQ==
-  dependencies:
-    "@types/node" "*"
-
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.1", "@types/istanbul-lib-coverage@^2.0.6":
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.6.tgz#7739c232a1fee9b4d3ce8985f314c0c6d33549d7"
@@ -2430,10 +2423,10 @@ conventional-changelog-angular@^8.0.0:
   dependencies:
     compare-func "^2.0.0"
 
-conventional-changelog-conventionalcommits@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-conventionalcommits/-/conventional-changelog-conventionalcommits-7.0.2.tgz#aa5da0f1b2543094889e8cf7616ebe1a8f5c70d5"
-  integrity sha512-NKXYmMR/Hr1DevQegFB4MwfM5Vv0m4UIxKZTTYuD98lpTknaZlSRrDOG4X7wIXpGkfsYxZTghUN+Qq+T0YQI7w==
+conventional-changelog-conventionalcommits@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-conventionalcommits/-/conventional-changelog-conventionalcommits-9.1.0.tgz#34e5f35c80c1375a5464df2a8067a1facbb2d858"
+  integrity sha512-MnbEysR8wWa8dAEvbj5xcBgJKQlX/m0lhS8DsyAAWDHdfs2faDJxTgzRYlRYpXSe7UiKrIIlB4TrBKU9q9DgkA==
   dependencies:
     compare-func "^2.0.0"
 
@@ -2467,6 +2460,13 @@ conventional-commits-parser@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/conventional-commits-parser/-/conventional-commits-parser-6.0.0.tgz#74e3be5344d8cd99f7c3353da2efa1d1dd618061"
   integrity sha512-TbsINLp48XeMXR8EvGjTnKGsZqBemisPoyWESlpRyR8lif0lcwzqz+NMtYSj1ooF/WYjSuu7wX0CtdeeMEQAmA==
+  dependencies:
+    meow "^13.0.0"
+
+conventional-commits-parser@^6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/conventional-commits-parser/-/conventional-commits-parser-6.2.1.tgz#855e53c4792b1feaf93649eff5d75e0dbc2c63ad"
+  integrity sha512-20pyHgnO40rvfI0NGF/xiEoFMkXDtkF8FwHvk5BokoFoCuTQRI8vrNCNFWUOfuolKJMm1tPCHc8GgYEtr1XRNA==
   dependencies:
     meow "^13.0.0"
 
